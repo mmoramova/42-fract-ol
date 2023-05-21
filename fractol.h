@@ -6,7 +6,7 @@
 /*   By: mmoramov <mmoramov@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:42:37 by mmoramov          #+#    #+#             */
-/*   Updated: 2023/05/12 20:34:06 by mmoramov         ###   ########.fr       */
+/*   Updated: 2023/05/21 09:34:41 by mmoramov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,16 @@ typedef struct	s_mlx {
 	t_img	img;
 	double	x_min;
 	double	x_max;
+	double	x_center;
 	double	y_min;
 	double	y_max;
-
+	double	y_center;
 }	t_mlx;
 
 void	ft_mlx_pixel_put(t_img *img, int x, int y, int color);
 t_mlx	ft_mlx_init(void);
 void	ft_render_mandelbrot(t_mlx *mlx);
-int		ft_mandelbrot(double xo, double yo);
+int		ft_mandelbrot(double x_center, double y_center);
 int ft_julia(double x, double y);
 
 #endif

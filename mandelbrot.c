@@ -6,7 +6,7 @@
 /*   By: mmoramov <mmoramov@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 20:30:44 by mmoramov          #+#    #+#             */
-/*   Updated: 2023/05/12 20:36:09 by mmoramov         ###   ########.fr       */
+/*   Updated: 2023/05/21 09:34:48 by mmoramov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,17 @@ void	ft_render_mandelbrot(t_mlx *mlx)
 {
 	int	i;
 	int	j;
-	double xo;
-	double yo;
-
 	i = 0;
 	j = 0;
-	xo = 0;
-	yo = 0;
 
 	while (i < WIDTH)
 	{
 		j = 0;
 		while (j < HEIGHT)
 		{
-			xo = mlx->x_min + (double)i* (mlx->x_max-mlx->x_min) / WIDTH;
-			yo = mlx->y_min + (double)j* (mlx->y_max-mlx->y_min) / HEIGHT;
-			if (ft_mandelbrot(xo, yo) < 1000)
+			x_center = mlx->x_min + (double)i* (mlx->x_max-mlx->x_min) / WIDTH;
+			y_center = mlx->y_min + (double)j* (mlx->y_max-mlx->y_min) / HEIGHT;
+			if (ft_mandelbrot(x_center, y_center) < 1000)
 				ft_mlx_pixel_put(&mlx->img, i, j, 255);
 			j++;
 		}
@@ -39,7 +34,7 @@ void	ft_render_mandelbrot(t_mlx *mlx)
 	}
 }
 
-int	ft_mandelbrot(double xo, double yo)
+int	ft_mandelbrot(double x_center, double y_center)
 {
 	int		iter_num;
 	double	x;
@@ -52,8 +47,8 @@ int	ft_mandelbrot(double xo, double yo)
 
 	while ((x*x + y*y) <= 4 && iter_num < 1000)
 	{
-		temp = x*x - y*y + xo;
-		y = 2*x*y + yo;
+		temp = x*x - y*y + x_center;
+		y = 2*x*y + y_center;
 		x = temp;
 		iter_num++;
 	}
