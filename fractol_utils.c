@@ -6,20 +6,35 @@
 /*   By: mmoramov <mmoramov@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:46:45 by mmoramov          #+#    #+#             */
-/*   Updated: 2023/05/22 17:12:57 by mmoramov         ###   ########.fr       */
+/*   Updated: 2023/05/22 18:59:55 by mmoramov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int ft_color(int iter)
+double	ft_atoi_double(const char *str)
 {
-	int color;
-	int colorrange[4] = {12930178, 15495836, 16035514, 16645579};
-	color = colorrange[iter % 4];
+	int	i;
+	double	nbr;
+	int	sign;
 
-	return (color);
+	nbr = 0.0;
+	i = 0;
+	sign = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '-')
+		sign *= -1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nbr = nbr * 10 + (str[i] - '0');
+		i++;
+	}
+	return (nbr * sign);
 }
+
 void	ft_mlx_render(t_mlx *mlx)
 {
 	if (mlx->type == 1)
@@ -53,11 +68,13 @@ t_mlx ft_mlx_init(int type, char **argv)
 	return (mlx);
 }
 
-int ft_find_type(char *argv)
+int ft_find_type(int argc, char **argv)
 {
-	if (ft_strncmp(argv, "mandelbrot", 10) == 0 && ft_strlen(argv) == 10)
+	if (argc < 2)
+		printf("Please type name of one of the following:\n1. mandelbrot\n2. julia");
+else if (ft_strncmp(argv[1], "mandelbrot", 10) == 0 && ft_strlen(argv[1]) == 10)
 		return (1);
-	else if (ft_strncmp(argv, "julia", 5) == 0 && ft_strlen(argv) == 5)
+	else if (ft_strncmp(argv[1], "julia", 5) == 0 && ft_strlen(argv[1]) == 5)
 		return (2);
 	else
 		printf("Please type name of one of the following:\n1. mandelbrot\n2. julia");

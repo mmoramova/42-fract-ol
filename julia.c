@@ -6,7 +6,7 @@
 /*   By: mmoramov <mmoramov@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 20:32:57 by mmoramov          #+#    #+#             */
-/*   Updated: 2023/05/22 17:06:30 by mmoramov         ###   ########.fr       */
+/*   Updated: 2023/05/22 18:20:57 by mmoramov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,20 @@ t_mlx ft_mlx_init_julia(char **argv)
 	mlx.win = NULL;
 	//mlx.img = NULL;
 	mlx.type = 2;
-	mlx.x_min = -3.5;
-	mlx.x_max = 1.5;
+	mlx.x_min = -2.2;
+	mlx.x_max = 2.2;
 	mlx.y_min = -2.2;
 	mlx.y_max = 2.2;
 
 	if (argv[2] && argv[3])
 	{
-		//mlx.x_center = ft_atoi(argv[2]);
-		//mlx.y_center = ft_atoi(argv[3]);
-		mlx.x_center = -0.88;
-		mlx.y_center = 0.008;
+		//mlx.x_center = ft_atoi_double(argv[2]);
+		//mlx.y_center = ft_atoi_double(argv[3]);
+		mlx.x_center = atof(argv[2]);  //TODO
+		mlx.y_center = atof(argv[3]);
+		printf("parametre su %f a %f\n", mlx.x_center, mlx.y_center);
+		//mlx.x_center = -0.88;
+		//mlx.y_center = 0.008;
 	}
 	else
 	{

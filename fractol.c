@@ -6,7 +6,7 @@
 /*   By: mmoramov <mmoramov@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:41:48 by mmoramov          #+#    #+#             */
-/*   Updated: 2023/05/21 21:15:19 by mmoramov         ###   ########.fr       */
+/*   Updated: 2023/05/22 19:10:16 by mmoramov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,26 +43,29 @@ void ft_zoom(t_mlx *mlx, int keycode)
 	{
 		mlx->x_min *= ZOOM;
 		mlx->x_max *= ZOOM;
+		mlx->y_min *= ZOOM;
+		mlx->y_max *= ZOOM;
 	}
 	if (keycode == 5) //-
 	{
 		mlx->x_min /= ZOOM;
 		mlx->x_max /= ZOOM;
+		mlx->y_min /= ZOOM;
+		mlx->y_max /= ZOOM;
 	}
 	ft_mlx_render(mlx);
 }
 
 int	key_hook(int keycode, t_mlx *mlx)
 {
-	t_mlx mlx2;
-
-	mlx2 = *mlx;
 	printf("Hello from key_hook!\n");
 	printf("Key code is: %d\n", keycode);
 
 	if (keycode == 53)//ESC
 	{
 		mlx_destroy_window(mlx->mlx, mlx->win);
+		mlx_destroy_image(mlx->mlx, mlx->img.mlx_img);
+		system("leaks fractol");
 		exit(0);
 	}
 	if (keycode >= 123 && keycode <= 126)
@@ -72,9 +75,6 @@ int	key_hook(int keycode, t_mlx *mlx)
 
 int	mouse_hook(int keycode, int x, int y, t_mlx *mlx)
 {
-	t_mlx mlx2;
-
-	mlx2 = *mlx;
 	printf("Hello from mouse_hook!\n");
 	printf("Mouse key code is: %d\n", keycode);
 	printf("Mouse axis are: %d and %d\n", x ,y);
@@ -83,14 +83,12 @@ int	mouse_hook(int keycode, int x, int y, t_mlx *mlx)
 	return (0);
 }
 
-int	ft_close(int keycode, t_mlx *mlx)
+int	ft_close(t_mlx *mlx)
 {
-	t_mlx mlx2;
-
-    mlx2 = *mlx;
-    printf("Close key code is: %d\n", keycode);
     mlx_destroy_window(mlx->mlx, mlx->win);
-	return (0);
+	mlx_destroy_image(mlx->mlx, mlx->img.mlx_img);
+	system("leaks fractol");
+	exit (0);
 }
 
 int	main(int argc, char **argv)
@@ -98,18 +96,16 @@ int	main(int argc, char **argv)
 	t_mlx	mlx;
 	int		type;
 
-	if (argc < 2)
-		return(0);
-	type = ft_find_type(argv[1]);
+	type = ft_find_type(argc, argv);
 	if (type == 0)
 		return(0);
 	mlx = ft_mlx_init(type, argv);
 	if (mlx.mlx == NULL || mlx.win == NULL)
 		return(0);
+
+	mlx_hook(mlx.win, 17, 0, ft_close, &mlx);
 	mlx_key_hook(mlx.win, key_hook, &mlx);
 	mlx_mouse_hook(mlx.win, mouse_hook, &mlx);
-
-	//mlx_hook(mlx_win, 2, 1L<<0, ft_close, &mlx);
 
 	mlx_loop(mlx.mlx);
 
