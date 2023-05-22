@@ -6,7 +6,7 @@
 /*   By: mmoramov <mmoramov@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:41:48 by mmoramov          #+#    #+#             */
-/*   Updated: 2023/05/21 12:33:45 by mmoramov         ###   ########.fr       */
+/*   Updated: 2023/05/21 21:15:19 by mmoramov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void ft_move(t_mlx *mlx, int keycode)
 		mlx->y_min -= MOVE;
 		mlx->y_max -= MOVE;
 	}
-	ft_render_mandelbrot(mlx);
+	ft_mlx_render(mlx);
 }
 
 void ft_zoom(t_mlx *mlx, int keycode)
@@ -49,7 +49,7 @@ void ft_zoom(t_mlx *mlx, int keycode)
 		mlx->x_min /= ZOOM;
 		mlx->x_max /= ZOOM;
 	}
-	ft_render_mandelbrot(mlx);
+	ft_mlx_render(mlx);
 }
 
 int	key_hook(int keycode, t_mlx *mlx)
@@ -96,20 +96,16 @@ int	ft_close(int keycode, t_mlx *mlx)
 int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
+	int		type;
 
 	if (argc < 2)
 		return(0);
-	mlx = ft_mlx_init();
-	mlx.mlx = mlx_init();
-	if (mlx.mlx == NULL)
+	type = ft_find_type(argv[1]);
+	if (type == 0)
 		return(0);
-	mlx.win = mlx_new_window(mlx.mlx , WIDTH, HEIGHT, argv[1]);
-	if (mlx.win == NULL)
+	mlx = ft_mlx_init(type, argv);
+	if (mlx.mlx == NULL || mlx.win == NULL)
 		return(0);
-	mlx.img.mlx_img = mlx_new_image(mlx.mlx, WIDTH, HEIGHT);
-	mlx.img.addr = mlx_get_data_addr(mlx.img.mlx_img, &mlx.img.bits_per_pixel, &mlx.img.line_len, &mlx.img.endian);
-	ft_render_mandelbrot(&mlx);
-
 	mlx_key_hook(mlx.win, key_hook, &mlx);
 	mlx_mouse_hook(mlx.win, mouse_hook, &mlx);
 

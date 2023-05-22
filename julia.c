@@ -6,52 +6,86 @@
 /*   By: mmoramov <mmoramov@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 20:32:57 by mmoramov          #+#    #+#             */
-/*   Updated: 2023/05/12 20:36:05 by mmoramov         ###   ########.fr       */
+/*   Updated: 2023/05/22 17:06:30 by mmoramov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int ft_julia(double x, double y)
+t_mlx ft_mlx_init_julia(char **argv)
 {
-    int iter_num;
-    double temp;
+	t_mlx	mlx;
 
-    iter_num = 0;
+	mlx.mlx = NULL;
+	mlx.win = NULL;
+	//mlx.img = NULL;
+	mlx.type = 2;
+	mlx.x_min = -3.5;
+	mlx.x_max = 1.5;
+	mlx.y_min = -2.2;
+	mlx.y_max = 2.2;
 
-
-    while ((x*x + y*y) <= 4 && iter_num < 1000)
-    {
-        temp = x*x - y*y - 0.7;
-        y = 2*x*y + 0.028015;
-        x = temp;
-        iter_num++;
-    }
-    return iter_num;
+	if (argv[2] && argv[3])
+	{
+		//mlx.x_center = ft_atoi(argv[2]);
+		//mlx.y_center = ft_atoi(argv[3]);
+		mlx.x_center = -0.88;
+		mlx.y_center = 0.008;
+	}
+	else
+	{
+		mlx.x_center = - 0.9;
+		mlx.y_center = 0.0290;
+	}
+	return (mlx);
 }
 
-/*
-    x_min = -3.5;
-    x_max = 1.5;
-    y_min = -2.2;
-    y_max = 2.2;
+void	ft_render_julia(t_mlx *mlx)
+{
+	int	i;
+	int	j;
+	double xo;
+	double yo;
+	int iter;
+	i = 0;
+	j = 0;
+	xo = 0;
+	yo = 0;
 
-    double xo;
-    double yo;
+	printf("x su %f a %f\n", mlx->x_min, mlx->x_max);
+	printf("y su %f a %f\n", mlx->y_min, mlx->y_max);
+	//mlx_clear_window(mlx->mlx, mlx->win);
+	while (i < WIDTH)
+	{
+		j = 0;
+		while (j < HEIGHT)
+		{
+			xo = mlx->x_min + (double)i* (mlx->x_max-mlx->x_min) / WIDTH;
+			yo = mlx->y_min + (double)j* (mlx->y_max-mlx->y_min) / HEIGHT;
+			iter = ft_julia(xo, yo, mlx);
+			if (iter < 1000)
+				ft_mlx_pixel_put(&mlx->img, i, j, ft_color(iter));
+			else
+				ft_mlx_pixel_put(&mlx->img, i, j, 0);
+			j++;
+		}
+		i++;
+	}
+}
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 500, 500, "Fract-ol");
+int	ft_julia(double x, double y, t_mlx *mlx)
+{
+	int		iter_num;
+	double	temp;
 
-    while (i < 500)
-    {
-        j = 0;
-        while (j < 500)
-        {
-            xo = x_min + (double)i* (x_max-x_min)/500; //width
-            yo = y_min + (double)j* (y_max-y_min)/500; //height
-            if (ft_julia(xo, yo) < 1000)
-                mlx_pixel_put(mlx, mlx_win, i, j, 0xFFFFFF);
-            j++;
-        }
-        i++;
-    }*/
+	iter_num = 0;
+
+	while ((x*x + y*y) <= 4 && iter_num < 100)
+	{
+		temp = x*x - y*y + mlx->x_center;
+		y = 2*x*y + mlx->y_center;
+		x = temp;
+		iter_num++;
+	}
+	return (iter_num);
+}
