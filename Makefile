@@ -6,7 +6,7 @@
 #    By: mmoramov <mmoramov@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/08 13:39:03 by mmoramov          #+#    #+#              #
-#    Updated: 2023/05/22 19:03:11 by mmoramov         ###   ########.fr        #
+#    Updated: 2023/06/08 19:09:53 by mmoramov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
-SRC_FILES = fractol fractol_utils colors mandelbrot julia
+SRC_FILES = fractol fractol_utils events colors mandelbrot julia burningship
 SRC = $(addsuffix .c, $(SRC_FILES))
 OBJ = $(SRC:.c=.o)
 DEP = $(SRC:.c=.d)
