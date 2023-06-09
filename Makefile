@@ -6,12 +6,11 @@
 #    By: mmoramov <mmoramov@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/08 13:39:03 by mmoramov          #+#    #+#              #
-#    Updated: 2023/06/08 19:09:53 by mmoramov         ###   ########.fr        #
+#    Updated: 2023/06/09 19:33:00 by mmoramov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
-# NAME_BONUS = checker
 HEADER = fractol.h
 C_FLAGS = -Wall -Wextra -Werror -MMD
 RM = rm -f
@@ -56,10 +55,6 @@ $(NAME):: $(OBJ) ./$(SRC_LIBFT) ./$(SRC_MLX)
 
 $(NAME)::
 	@echo "$(BLUE)No actions needed.$(BLACK)"
-
-# -include ${DEP_BONUS}
-
-# bonus: make_libs bonusChecker
 
 .PHONY: all clean fclean re
 

@@ -6,7 +6,7 @@
 /*   By: mmoramov <mmoramov@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:46:45 by mmoramov          #+#    #+#             */
-/*   Updated: 2023/06/08 20:05:39 by mmoramov         ###   ########.fr       */
+/*   Updated: 2023/06/09 19:28:33 by mmoramov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ t_mlx	ft_mlx_init(int type, char **argv)
 	mlx.win = mlx_new_window(mlx.mlx, WIDTH, HEIGHT, argv[1]);
 	mlx.color = 1;
 	mlx.img.mlx_img = mlx_new_image(mlx.mlx, WIDTH, HEIGHT);
-	mlx.img.addr = mlx_get_data_addr(mlx.img.mlx_img, &mlx.img.bits_per_pixel, &mlx.img.line_len, &mlx.img.endian);
+	mlx.img.addr = mlx_get_data_addr(mlx.img.mlx_img, &mlx.img.bits_per_pixel,
+			&mlx.img.line_len, &mlx.img.endian);
 	ft_mlx_render(&mlx);
 	return (mlx);
 }
@@ -57,11 +58,13 @@ int	ft_find_type(int argc, char **argv)
 		ft_putstr_fd("Please type name of one of the following:", 1);
 		ft_putstr_fd("1./ mandelbrot\n2. julia\n3. burningship", 1);
 	}
-	else if (ft_strncmp(argv[1], "mandelbrot", 10) == 0 && ft_strlen(argv[1]) == 10)
+	else if (ft_strncmp(argv[1], "mandelbrot", 10) == 0
+		&& ft_strlen(argv[1]) == 10)
 		return (1);
 	else if (ft_strncmp(argv[1], "julia", 5) == 0 && ft_strlen(argv[1]) == 5)
 		return (2);
-	else if (ft_strncmp(argv[1], "burningship", 11) == 0 && ft_strlen(argv[1]) == 11)
+	else if (ft_strncmp(argv[1], "burningship", 11) == 0
+		&& ft_strlen(argv[1]) == 11)
 		return (3);
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: mmoramov <mmoramov@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 20:30:44 by mmoramov          #+#    #+#             */
-/*   Updated: 2023/06/08 20:03:10 by mmoramov         ###   ########.fr       */
+/*   Updated: 2023/06/09 19:22:10 by mmoramov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ void	ft_render_mandelbrot(t_mlx *mlx)
 		j = 0;
 		while (j < HEIGHT)
 		{
-			mlx->x_cntr = mlx->x_min +(double)i *(mlx->x_max - mlx->x_min) / WIDTH;
-			mlx->y_cntr = mlx->y_min + (double)j *(mlx->y_max - mlx->y_min) / HEIGHT;
+			mlx->x_cntr = mlx->x_min +(double)i
+				* (mlx->x_max - mlx->x_min) / WIDTH;
+			mlx->y_cntr = mlx->y_min + (double)j
+				* (mlx->y_max - mlx->y_min) / HEIGHT;
 			iter = ft_mandelbrot(mlx->x_cntr, mlx->y_cntr);
 			if (iter < 100)
 				ft_mlx_pixel_put(&mlx->img, i, j, ft_color(iter, mlx->color));

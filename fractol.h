@@ -6,7 +6,7 @@
 /*   By: mmoramov <mmoramov@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:42:37 by mmoramov          #+#    #+#             */
-/*   Updated: 2023/06/08 19:24:02 by mmoramov         ###   ########.fr       */
+/*   Updated: 2023/06/09 18:17:46 by mmoramov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 #define HEIGHT 500
 #define WIDTH 500
-#define MOVE 0.2
+#define MOVE 0.1
 #define ZOOM 1.1
 
 typedef struct	s_img
