@@ -6,7 +6,7 @@
 /*   By: mmoramov <mmoramov@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:46:45 by mmoramov          #+#    #+#             */
-/*   Updated: 2023/06/09 19:28:33 by mmoramov         ###   ########.fr       */
+/*   Updated: 2023/06/11 12:22:51 by mmoramov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	ft_find_type(int argc, char **argv)
 	if (argc < 2)
 	{
 		ft_putstr_fd("Please type name of one of the following:", 1);
-		ft_putstr_fd("1./ mandelbrot\n2. julia\n3. burningship", 1);
+		ft_putstr_fd("\n1. mandelbrot\n2. julia\n3. burningship", 1);
 	}
 	else if (ft_strncmp(argv[1], "mandelbrot", 10) == 0
 		&& ft_strlen(argv[1]) == 10)
@@ -69,7 +69,7 @@ int	ft_find_type(int argc, char **argv)
 	else
 	{
 		ft_putstr_fd("Please type name of one of the following:", 1);
-		ft_putstr_fd("1./ mandelbrot\n2. julia\n3. burningship", 1);
+		ft_putstr_fd("\n1. mandelbrot\n2. julia\n3. burningship", 1);
 	}
 	return (0);
 }

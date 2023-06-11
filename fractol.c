@@ -6,7 +6,7 @@
 /*   By: mmoramov <mmoramov@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:41:48 by mmoramov          #+#    #+#             */
-/*   Updated: 2023/06/08 19:47:51 by mmoramov         ###   ########.fr       */
+/*   Updated: 2023/06/11 12:22:55 by mmoramov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	main(int argc, char **argv)
 	if (mlx.mlx == NULL || mlx.win == NULL)
 		return (0);
 	mlx_hook(mlx.win, 17, 0, ft_close, &mlx);
-	mlx_key_hook(mlx.win, key_hook, &mlx);
-	mlx_mouse_hook(mlx.win, mouse_hook, &mlx);
+	mlx_key_hook(mlx.win, ft_key_hook, &mlx);
+	mlx_mouse_hook(mlx.win, ft_mouse_hook, &mlx);
 	mlx_loop(mlx.mlx);
 	return (0);
 }
