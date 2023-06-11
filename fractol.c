@@ -6,7 +6,7 @@
 /*   By: mmoramov <mmoramov@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:41:48 by mmoramov          #+#    #+#             */
-/*   Updated: 2023/06/11 12:22:55 by mmoramov         ###   ########.fr       */
+/*   Updated: 2023/06/11 23:06:20 by mmoramov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	ft_close(t_mlx *mlx)
 		mlx_destroy_window(mlx->mlx, mlx->win);
 	if (mlx->img.mlx_img)
 		mlx_destroy_image(mlx->mlx, mlx->img.mlx_img);
-	system("leaks fractol");
 	exit (0);
 }
 

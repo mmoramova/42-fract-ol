@@ -6,7 +6,7 @@
 /*   By: mmoramov <mmoramov@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 19:46:45 by mmoramov          #+#    #+#             */
-/*   Updated: 2023/06/11 12:22:51 by mmoramov         ###   ########.fr       */
+/*   Updated: 2023/06/11 23:02:05 by mmoramov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ t_mlx	ft_mlx_init(int type, char **argv)
 	mlx.img.mlx_img = mlx_new_image(mlx.mlx, WIDTH, HEIGHT);
 	mlx.img.addr = mlx_get_data_addr(mlx.img.mlx_img, &mlx.img.bits_per_pixel,
 			&mlx.img.line_len, &mlx.img.endian);
+	ft_putstr_fd("Use arrows for move, scroll for zooming.", 1);
+	ft_putstr_fd("\nSHIFT - change color palette", 1);
+	ft_putstr_fd("\nRIGHT CLICK - change params for fractal (for julia only)", 1);
+	ft_putstr_fd("\nESC - end the program", 1);
 	ft_mlx_render(&mlx);
 	return (mlx);
 }

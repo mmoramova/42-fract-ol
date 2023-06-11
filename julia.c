@@ -6,7 +6,7 @@
 /*   By: mmoramov <mmoramov@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 20:32:57 by mmoramov          #+#    #+#             */
-/*   Updated: 2023/06/09 19:23:54 by mmoramov         ###   ########.fr       */
+/*   Updated: 2023/06/11 23:31:42 by mmoramov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,11 @@ void	ft_render_julia(t_mlx *mlx)
 	double	yo;
 	int		iter;
 
-	i = 0;
-	j = 0;
-	while (i < WIDTH)
+	i = -1;
+	while (i++ < WIDTH)
 	{
-		j = 0;
-		while (j < HEIGHT)
+		j = -1;
+		while (j++ < HEIGHT)
 		{
 			xo = mlx->x_min + (double)i * (mlx->x_max - mlx->x_min) / WIDTH;
 			yo = mlx->y_min + (double)j * (mlx->y_max - mlx->y_min) / HEIGHT;
@@ -50,9 +49,7 @@ void	ft_render_julia(t_mlx *mlx)
 				ft_mlx_pixel_put(&mlx->img, i, j, ft_color(iter, mlx->color));
 			else
 				ft_mlx_pixel_put(&mlx->img, i, j, 0);
-			j++;
 		}
-		i++;
 	}
 }
 
